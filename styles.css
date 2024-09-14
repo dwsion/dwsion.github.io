@@ -1,0 +1,96 @@
+/* styles.css */
+
+/* Taustan ja tekstin värit */
+body {
+    background-color: #f1f1e9; /* Vaalea tausta */
+    color: #333333; /* Tumma harmaa teksti, hyvä kontrasti */
+    font-family: 'Helvetica Neue', sans-serif;
+    padding-top: 56px; /* Lisää tilaa, jotta navigaatio ei peitä sisältöä */
+}
+
+/* Navigaatiopalkki */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1030; /* Varmista, että navigaatio on muiden elementtien yläpuolella */
+    background-color: #ffffff; /* Valkoinen tausta navigaatiolle */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lisää varjo, jotta navigaatio erottuu taustasta */
+}
+
+/* Navigaatiopaneelin asettelu */
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar-nav {
+    margin-left: auto; /* Varmista, että navigaatio on oikeassa reunassa */
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+/* Navigaatiovalikon tyyli */
+.navbar-nav .nav-link {
+    color: #333333; /* Tumma teksti linkeille */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007b5e; /* Vihreä hover-efekti */
+}
+
+/* Painikkeet */
+.btn-primary {
+    background-color: #1e3494; /* Tumma vihreä painikkeille */
+    border-color: #005f46;
+    color: #ffffff; /* Valkoinen teksti */
+}
+
+.btn-primary:hover {
+    background-color: #007b5e; /* Vaaleampi vihreä hover-efekti */
+    border-color: #007b5e;
+}
+
+/* Korttien värit */
+.card {
+    background-color: #ffffff; /* Valkoinen korttien tausta */
+    border-color: #007b5e; /* Vihreä reuna */
+    color: #333333; /* Tumma teksti */
+}
+
+.card-title {
+    color: #007b5e; /* Vihreä otsikko */
+}
+
+.card-body {
+    background-color: #e8f5e9; /* Vaaleanvihreä korttien tausta */
+}
+
+/* Taulukon tyyli */
+.table {
+    background-color: #500707; /* Valkoinen tausta */
+    border-color: #007b5e; /* Vihreä reuna */
+}
+
+.table th, .table td {
+    color: #333333; /* Tumma teksti */
+    border-color: #007b5e; /* Vihreä viiva */
+}
+
+/* Haitari (accordion) */
+.accordion-button {
+    background-color: #e2b41c; /* Vihreä tausta */
+    color: #ffffff; /* Valkoinen teksti */
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #005f46; /* Tummempi vihreä, kun haitari on avattuna */
+}
+
+.accordion-body {
+    background-color: #e8f5e9; /* Vaaleanvihreä tausta */
+    color: #333333; /* Tumma teksti */
+}
