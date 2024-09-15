@@ -3,17 +3,16 @@ body {
     background-color: #f1f1e9; /* Vaalea tausta */
     color: #333333; /* Tumma harmaa teksti */
     font-family: 'Helvetica Neue', sans-serif;
-    padding-top: 56px; /* Lisää tilaa navigaatiolle */
-    box-sizing: border-box; /* Sisällyttää paddingin ja borderin leveys- ja korkeuslaskentaan */
+    padding-top: 70px; /* Lisää tilaa navigaatiolle */
 }
 
 /* Navigaatiopalkki */
 .navbar {
     background-color: #002f5d;
     position: fixed;
-    top: 0; /* Muuta top: 10px -> top: 0 */
+    top: 10;
     left: 0;
-    height: 100vh; /* Muuta height: 35vh -> height: 100vh */
+    height: 60vh;
     width: 250px;
     z-index: 1030;
     display: flex;
@@ -21,7 +20,6 @@ body {
     justify-content: space-between;
     transform: translateX(-250px);
     transition: transform 0.3s ease;
-    box-sizing: border-box; /* Sisällyttää paddingin ja borderin leveys- ja korkeuslaskentaan */
 }
 .navbar.show {
     transform: translateX(0);
@@ -40,7 +38,6 @@ body {
 .navbar-nav .nav-link {
     color: #f0e6e6 !important;
     padding: 15px 20px;
-    display: block; /* Varmistaa, että linkit vievät koko tilan */
 }
 .navbar-nav .nav-link:hover {
     background-color: #003d6a;
@@ -73,6 +70,7 @@ body {
 }
 
 /* Kuvakaruselli */
+
 .custom-carousel {
     max-width: 800px; /* Aseta karusellille maksimi leveys */
     margin: 0 auto; /* Keskittää karusellin */
@@ -131,36 +129,21 @@ body {
     color: #333333;
     border-color: #007b5e;
 }
-
-/* Lomakkeen kentät */
 .form-control {
     max-width: 100%; /* Varmistaa, ettei kenttä ylitä säilijän leveyttä */
 }
-
-/* Hakukenttä */
 .search-container {
     margin: 20px 0;
     padding: 0 15px; /* Lisää tilaa säilijän reunoilta */
 }
 
+
 /* Footer */
 footer {
     background-color: #f1f1e9;
     color: #333333;
-    text-align: center; /* Lisää puuttuva pilkku */
-    padding: 20px; /* Muuta padding-arvoa; 300px saattaa olla liian suuri */
+    text-align: center
+    padding: 300px;
 }
 
-/* Media kyselyt */
-@media (max-width: 768px) {
-    .navbar {
-        width: 100%; /* Varmistaa, että navivalikko vie koko leveyden pienemmillä näytöillä */
-        height: 100vh; /* Varmistaa, että navivalikko vie koko korkeuden */
-        transform: translateX(0); /* Poista muunnos pienemmillä näytöillä */
-    }
-
-    .navbar-toggler {
-        top: 10px;
-        left: 10px;
-    }
-}
+    
