@@ -5,33 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Käytetyt Elementit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet"> <!-- Linkitä CSS-tiedostosi -->
 </head>
 <body>
-    <!-- Sama navigaatio -->
-    <nav class="navbar navbar-light bg-light sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="elements.html">Käytetyt elementit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="api.html">API-haku</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="table.html">Taulukko ja Lomake</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigaatio -->
+   <!-- Vasemman reunan hampurilaisvalikkonappi -->
+   <button class="navbar-toggler" id="menuToggle">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+
+<!-- Navigaatiopalkki -->
+ <nav class="navbar">
+    <div class="container-fluid d-flex flex-column">
+        <a class="navbar-brand" href="#">ELEMENTIT</a>
+        <ul class="navbar-nav">
+        
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Etusivu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="api.html">API-haku</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="table.html">Taulukko ja Lomake</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="helsinkiapi.html">Uutishaku</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Hampurilaisvalikon painike -->
+
+<!--Kuuntelee nappia ja tuo valikon esiin klikattaessa-->
+
+<script> document.getElementById('menuToggle').addEventListener('click', function() {
+    document.querySelector('.navbar').classList.toggle('show');
+});
+</script>
 
     <div class="container mt-5">
         <h1>Käytetyt Bootstrap-elementit</h1>
@@ -47,5 +60,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script> <!-- Linkitä JavaScript-tiedostosi -->
 </body>
 </html>

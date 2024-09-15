@@ -1,96 +1,141 @@
-/* styles.css */
-
-/* Taustan ja tekstin värit */
+/* Yleiset tyylit */
 body {
     background-color: #f1f1e9; /* Vaalea tausta */
-    color: #333333; /* Tumma harmaa teksti, hyvä kontrasti */
+    color: #333333; /* Tumma harmaa teksti */
     font-family: 'Helvetica Neue', sans-serif;
-    padding-top: 56px; /* Lisää tilaa, jotta navigaatio ei peitä sisältöä */
+    padding-top: 56px; /* Lisää tilaa navigaatiolle */
 }
 
 /* Navigaatiopalkki */
 .navbar {
+    background-color: #002f5d;
     position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1030; /* Varmista, että navigaatio on muiden elementtien yläpuolella */
-    background-color: #ffffff; /* Valkoinen tausta navigaatiolle */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lisää varjo, jotta navigaatio erottuu taustasta */
-}
-
-/* Navigaatiopaneelin asettelu */
-.navbar-collapse {
+    top: 10;
+    left: 0;
+    height: 30vh;
+    width: 250px;
+    z-index: 1030;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease;
 }
-
+.navbar.show {
+    transform: translateX(0);
+}
+.navbar-brand {
+    color: #f1e208 !important;
+    text-align: center;
+    margin-top: 20px;
+}
 .navbar-nav {
-    margin-left: auto; /* Varmista, että navigaatio on oikeassa reunassa */
+    margin-top: 20px; /* Lisää tilaa alavalikoiden ylle */
 }
-
-.navbar-toggler {
-    border: none;
-    outline: none;
+.navbar-nav .nav-item {
+    position: relative; /* Tarvitaan dropdownin suhteelliseen asemoimiseen */
 }
-
-/* Navigaatiovalikon tyyli */
 .navbar-nav .nav-link {
-    color: #333333; /* Tumma teksti linkeille */
+    color: #f0e6e6 !important;
+    padding: 15px 20px;
 }
-
 .navbar-nav .nav-link:hover {
-    color: #007b5e; /* Vihreä hover-efekti */
+    background-color: #003d6a;
+}
+.navbar-toggler {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #002f5d;
+    border: none;
+    color: #ffffff;
+    font-size: 36px; /* Suurenna kuvaketta lisäämällä fonttikokoa */
+    z-index: 1040;
+    padding: 15px; /* Lisää pehmustetta */
+}
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"%3E%3Cpath stroke="%23ffffff" stroke-width="3" d="M6 9h24M6 18h24M6 27h24" /%3E%3C/svg%3E');
 }
 
 /* Painikkeet */
 .btn-primary {
-    background-color: #1e3494; /* Tumma vihreä painikkeille */
+    background-color: #1e3494;
     border-color: #005f46;
-    color: #ffffff; /* Valkoinen teksti */
+    color: #ffffff;
 }
 
 .btn-primary:hover {
-    background-color: #007b5e; /* Vaaleampi vihreä hover-efekti */
+    background-color: #007b5e;
     border-color: #007b5e;
 }
 
-/* Korttien värit */
+/* Kuvakaruselli */
+
+.custom-carousel {
+    max-width: 800px; /* Aseta karusellille maksimi leveys */
+    margin: 0 auto; /* Keskittää karusellin */
+}
+
+.custom-carousel img {
+    width: 100%; /* Varmistaa, että kuva täyttää karusellin leveyden */
+    height: auto; /* Skaalaa kuvan korkeuden automaattisesti mittasuhteet säilyttäen */
+    max-height: 400px; /* Maksimikorkeus, joka estää liian suuren karusellin */
+    object-fit: contain; /* Varmistaa, että kuva säilyttää mittasuhteensa eikä veny */
+}
+
+/* Kortit */
 .card {
-    background-color: #ffffff; /* Valkoinen korttien tausta */
-    border-color: #007b5e; /* Vihreä reuna */
-    color: #333333; /* Tumma teksti */
+    background-color: #ffffff;
+    border-color: #007b5e;
+    color: #333333;
 }
 
 .card-title {
-    color: #007b5e; /* Vihreä otsikko */
+    color: #000201;
 }
 
 .card-body {
-    background-color: #e8f5e9; /* Vaaleanvihreä korttien tausta */
+    background-color: #e8f5e9;
 }
 
-/* Taulukon tyyli */
-.table {
-    background-color: #500707; /* Valkoinen tausta */
-    border-color: #007b5e; /* Vihreä reuna */
-}
-
-.table th, .table td {
-    color: #333333; /* Tumma teksti */
-    border-color: #007b5e; /* Vihreä viiva */
+.card-img-top {
+    height: auto; 
+    max-height: 500px; /* Rajoittaa korttikuvien korkeutta */
+    object-fit: cover;
 }
 
 /* Haitari (accordion) */
 .accordion-button {
-    background-color: #e2b41c; /* Vihreä tausta */
-    color: #ffffff; /* Valkoinen teksti */
+    background-color: #2035ac; /* Keltainen tausta */
+    color: #ffffff;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #005f46; /* Tummempi vihreä, kun haitari on avattuna */
+    background-color: #eb708f;
 }
 
 .accordion-body {
-    background-color: #e8f5e9; /* Vaaleanvihreä tausta */
-    color: #333333; /* Tumma teksti */
+    background-color: #e8f5e9;
+    color: #333333;
 }
+
+/* Taulukon tyyli */
+.table {
+    background-color: #ffffff;
+    border-color: #007b5e;
+}
+
+.table th, .table td {
+    color: #333333;
+    border-color: #007b5e;
+}
+
+/* Footer */
+footer {
+    background-color: #f1f1e9;
+    color: #333333;
+    text-align: center
+    padding: 300px;
+}
+
+    
