@@ -3,7 +3,7 @@ body {
     background-color: #f1f1e9; /* Vaalea tausta */
     color: #333333; /* Tumma harmaa teksti */
     font-family: 'Helvetica Neue', sans-serif;
-    padding-top: 60px; /* Lisää tilaa navigaatiolle */
+    padding-top: 56px; /* Lisää tilaa navigaatiolle */
 }
 
 /* Navigaatiopalkki */
@@ -145,5 +145,3 @@ footer {
     text-align: center
     padding: 300px;
 }
-
-    

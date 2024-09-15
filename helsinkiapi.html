@@ -144,6 +144,8 @@
     const query = document.getElementById('queryInput').value;
     const apiKey = '838618bc5ce34fa9acb6368080bc2536'; 
     const apiUrl = `http://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=fi&apiKey=${apiKey}`;
+    
+
 
     fetch(apiUrl)
         .then(response => response.json())
