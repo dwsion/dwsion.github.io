@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uutishaku</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
     <link href="styles.css" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding-left: 250px; /* Jätä tilaa sivun vasempaan reunaan */
-            position: relative;
-            min-height: 100vh; /* Varmistaa, että footer on aina alareunassa */
+            overflow-x: hidden; /* Piilottaa vaakasuuntaisen ylivuodon */
         }
-        
+
         .search-container {
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap; /* Varmistaa, että elementit voivat kääntyä uudelle riville pienillä näytöillä */
             gap: 10px;
             margin: 20px 0;
+            padding: 0 15px; /* Lisää tilaa säilijän reunoilta */
         }
         .btn-custom {
             background-color: #005b96;
@@ -33,6 +36,7 @@
         .form-control {
             border: 2px solid #031825;
             border-radius: 0;
+            max-width: 100%; /* Varmistaa, ettei kenttä ylitä säilijän leveyttä */
         }
         .news-item {
             display: flex;
@@ -44,12 +48,13 @@
             overflow: hidden;
         }
         .news-item img {
-            max-width: 200px;
-            max-height: 150px;
-            object-fit: cover;
-            margin-right: 20px;
+            width: 100%;  /* Skaalaa kuvan täyttämään sen vanhemman elementin leveys */
+            height: auto; /* Säilyttää kuvasuhteen skaalattaessa */
+            object-fit: cover; /* Pitää kuvan oikeassa suhteessa ja täyttää alueen */
+            max-width: 200px; /* Rajoittaa kuvan maksimileveyden */
             border-radius: 5px;
-        }
+
+}
         .news-item .news-content {
             flex: 1;
             padding: 15px;
@@ -77,17 +82,6 @@
             text-align: center;
             margin-top: 20px;
         }
-        @media (max-width: 768px) {
-            .navbar {
-                transform: translateX(2);
-                width: 100%;
-                height: 100px;
-                position: fixed;
-            }
-            body {
-                padding-left: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -95,11 +89,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     
-
-     <nav class="navbar">
+    <!-- Navigaatiopalkki -->
+    <nav class="navbar">
         <div class="container-fluid d-flex flex-column">
             <a class="navbar-brand" href="#">UUTISHAKU</a>
             <ul class="navbar-nav">
+            
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">Etusivu</a>
                 </li>
@@ -130,14 +125,12 @@
         </div>
 
         <!-- Uutisten lista -->
-        <ul id="newsList" class="list-group"></ul>
+        <ul id="newsList" class="list-group mt-3"></ul>
     </div>
 
     <div class="footer">
         <p>&copy; 2024 Uutishaku. Kaikki oikeudet pidätetään.</p>
     </div>
-
-    <!--Javascript, joka hakee uutiset, kun nappia painetaan-->
 
     <script>
         document.getElementById('fetchNewsBtn').addEventListener('click', fetchNews);
@@ -148,32 +141,39 @@
         });
 
         function fetchNews() {
-            const query = document.getElementById('queryInput').value;
-            const apiKey = '838618bc5ce34fa9acb6368080bc2536'; 
-            const apiUrl = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=fi&apiKey=${apiKey}`;
+    const query = document.getElementById('queryInput').value;
+    const apiKey = '838618bc5ce34fa9acb6368080bc2536'; 
+    const apiUrl = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=fi&apiKey=${apiKey}`;
 
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const newsList = document.getElementById('newsList');
-                    newsList.innerHTML = '';  // Tyhjennä lista ennen uuden datan lisäämistä
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const newsList = document.getElementById('newsList');
+            newsList.innerHTML = '';  // Tyhjennä lista ennen uuden datan lisäämistä
 
-                    data.articles.forEach(article => {
-                        const listItem = document.createElement('li');
-                        listItem.classList.add('news-item');
-                        listItem.innerHTML = `
-                            <img src="${article.urlToImage || 'https://via.placeholder.com/150'}" alt="${article.title}">
-                            <div class="news-content">
-                                <h5 class="news-title">${article.title}</h5>
-                                <p>${article.description}</p>
-                                <p class="news-source">Lähde: ${article.source.name}</p>
-                            </div>
-                        `;
-                        newsList.appendChild(listItem);
-                    });
-                })
-                .catch(error => console.error('Virhe haettaessa uutisia:', error));
-        }
+            data.articles.forEach(article => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('news-item');
+                
+                // Muunnetaan julkaisuajan formaatti helposti luettavaan muotoon
+                const publishedDate = new Date(article.publishedAt);
+                const formattedDate = publishedDate.toLocaleDateString('fi-FI');
+                const formattedTime = publishedDate.toLocaleTimeString('fi-FI');
+
+                listItem.innerHTML = `
+                    <img src="${article.urlToImage || 'https://via.placeholder.com/150'}" alt="${article.title}">
+                    <div class="news-content">
+                        <h5 class="news-title">${article.title}</h5>
+                        <p>${article.description}</p>
+                        <p class="news-source">Lähde: ${article.source.name}</p>
+                        <p class="news-date">Julkaistu: ${formattedDate} ${formattedTime}</p>
+                    </div>
+                `;
+                newsList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Virhe haettaessa uutisia:', error));
+}
 
         // Toggle the navigation menu
         document.getElementById('menuToggle').addEventListener('click', function() {
